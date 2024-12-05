@@ -1,0 +1,22 @@
+:root {
+  /* FONTS */
+  --font-inter: "Inter Variable", sans-serif;
+  --font-martian: "Martian Mono Variable", monospace;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  transition: all 200ms ease-out;
+}
+
+button {
+  isolation: isolate;
+  appearance: none;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
