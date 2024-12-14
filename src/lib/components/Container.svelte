@@ -1,12 +1,10 @@
 <script lang="ts">
-	import type { SvelteComponent } from "svelte";
-
-  interface TheProps {
+  interface Props {
     bg?: string;
     fg?: string;
     children: any;
   }
-  let { bg = '#121212', fg = '#ffffff', children }: TheProps = $props();
+  let { bg = '#121212', fg = '#ffffff', children }: Props = $props();
 </script>
 
 <div class="container" style="color: {fg}; background: {bg};">
