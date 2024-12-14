@@ -1,6 +1,6 @@
 <script lang="ts">
   import Container from "$lib/components/Container.svelte";
-	import AllButtons from "$lib/components/interesting-buttons/AllButtons.svelte";
+	import Test from "$lib/components/css-shaders/Test.svelte";
 </script>
 
 <svelte:head>
@@ -8,5 +8,5 @@
 </svelte:head>
 
 <Container>
-  <AllButtons />
+  <Test />
 </Container>
