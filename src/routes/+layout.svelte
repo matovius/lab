@@ -1,12 +1,20 @@
-<script lang="ts">
-  import "@fontsource-variable/inter";
-  import "@fontsource-variable/martian-mono";
-  import "../styles/app.css";
-  interface Props {
-    children?: import('svelte').Snippet;
-  }
+<script>
+	import '@fontsource-variable/inter';
+	import '@fontsource-variable/martian-mono';
+	import favicon from '$lib/assets/favicon.svg';
+	import '../app.css';
 
-  let { children }: Props = $props();
+	/**
+	 * @typedef Props
+	 * @prop { import('svelte').Snippet } children
+	 */
+
+	/** @type { Props } */
+	let { children } = $props();
 </script>
 
-{@render children?.()}
+<svelte:head>
+	<link rel="icon" href={favicon} />
+</svelte:head>
+
+{@render children()}

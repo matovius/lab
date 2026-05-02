@@ -1,0 +1,118 @@
+@layer variables, reset, base, components, utilities;
+
+@layer variables {
+	:root {
+		/* FONTS */
+		/* Families */
+		--font-inter: 'Inter Variable', sans-serif;
+		--font-martian: 'Martian Mono Variable', monospace;
+		/* Typescale */
+		--text-sm: clamp(0.8rem, 0.28vi + 0.73rem, 0.94rem);
+		--text-base: clamp(1rem, 0.5vi + 0.88rem, 1.25rem);
+		--text-md: clamp(1.25rem, 0.83vi + 1.04rem, 1.67rem);
+		--text-lg: clamp(1.56rem, 1.32vi + 1.23rem, 2.22rem);
+		--text-xl: clamp(1.95rem, 2.02vi + 1.45rem, 2.96rem);
+		--text-xxl: clamp(2.44rem, 3.01vi + 1.69rem, 3.95rem);
+		--text-xxxl: clamp(3.05rem, 4.42vi + 1.95rem, 5.26rem);
+
+		/* COLORS */
+		/* Base colors */
+		--color-white: #ffffff;
+		--color-black: #000000;
+		/* Color palettes */
+		--color-neutral-50: color-mix(in oklab, var(--color-white), var(--color-black) 5%);
+		--color-neutral-100: color-mix(in oklab, var(--color-white), var(--color-black) 10%);
+		--color-neutral-200: color-mix(in oklab, var(--color-white), var(--color-black) 20%);
+		--color-neutral-300: color-mix(in oklab, var(--color-white), var(--color-black) 30%);
+		--color-neutral-400: color-mix(in oklab, var(--color-white), var(--color-black) 40%);
+		--color-neutral-500: color-mix(in oklab, var(--color-white), var(--color-black) 50%);
+		--color-neutral-600: color-mix(in oklab, var(--color-white), var(--color-black) 60%);
+		--color-neutral-700: color-mix(in oklab, var(--color-white), var(--color-black) 70%);
+		--color-neutral-800: color-mix(in oklab, var(--color-white), var(--color-black) 80%);
+		--color-neutral-900: color-mix(in oklab, var(--color-white), var(--color-black) 90%);
+		--color-neutral-950: color-mix(in oklab, var(--color-white), var(--color-black) 95%);
+	}
+}
+
+@layer reset {
+	*,
+	*::before,
+	*::after {
+		box-sizing: border-box;
+		padding: 0;
+		margin: 0;
+		transition: all 200ms ease-out;
+	}
+
+	button {
+		isolation: isolate;
+		appearance: none;
+		background: transparent;
+		border: none;
+		cursor: pointer;
+	}
+}
+
+@layer base {
+	body {
+		font-size: var(--text-base);
+		font-family: var(--font-inter);
+		color: var(--color-neutral-800);
+		overflow-x: hidden;
+	}
+
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6 {
+		font-family: var(--font-martian);
+	}
+	h1 {
+		font-size: var(--text-xxxl);
+		line-height: 1;
+	}
+	h2 {
+		font-size: var(--text-xxl);
+		line-height: 1;
+	}
+	h3 {
+		font-size: var(--text-xl);
+		line-height: 1.2;
+	}
+	h4 {
+		font-size: var(--text-lg);
+		line-height: 1.2;
+	}
+	h5 {
+		font-size: var(--text-md);
+		line-height: 1.4;
+	}
+	h6 {
+		font-size: var(--text-base);
+		line-height: 1.4;
+	}
+	p {
+		font-size: var(--text-base);
+		line-height: 1.5;
+	}
+	small {
+		font-size: var(--text-sm);
+		font-weight: 500;
+		line-height: 1.5;
+	}
+	span {
+		font: inherit;
+	}
+
+	a {
+		font-family: var(--font-martian);
+		font-weight: 600;
+		text-decoration: 2px solid underline transparent;
+
+		&:hover {
+			text-decoration-color: black;
+		}
+	}
+}
