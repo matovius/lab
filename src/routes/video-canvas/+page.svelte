@@ -249,9 +249,6 @@
 			pointer-events: none;
 			position: absolute;
 		}
-		& > p.video-details {
-			text-align: center;
-		}
 	}
 
 	.video-container {
