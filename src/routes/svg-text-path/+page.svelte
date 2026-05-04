@@ -1,9 +1,10 @@
 <script>
+	import ExperimentNotes from '$components/experiment-data/ExperimentNotes.svelte';
 	import { useIntersectionObserver } from '$lib/scripts/utils.svelte';
-	import { onMount } from 'svelte';
 
 	/** Scales the `startOffset` of the `textPath` to the values `0-100` */
 	let scaledOffset = $state(0);
+	// $inspect(scaledOffset);
 	let pathOffset = $derived((scaledOffset + 50) * -1);
 
 	let pathAnimationObserver = useIntersectionObserver({ threshold: 0.5 });
@@ -14,6 +15,7 @@
 
 	function handleWindowScroll() {
 		const container = document.querySelector('main');
+		// console.log('Scroll y: ', window.scrollY);
 
 		// if (container && pathAnimationObserver.intersecting) {
 		if (container) {
@@ -66,10 +68,25 @@
 		</svg>
 		<!-- {@render Controls()} -->
 	</div>
-	<!-- <div class="bumper"></div> -->
+	<ExperimentNotes>
+		<p>
+			In this experiment, I use SVG to place text on a path, I then manipulate the <code
+				>startOffset</code
+			>
+			attribute to manipulate the position of the text along the path.<br /><br />Using percentage
+			values enables me to move the text without worrying about pixel values. I calculated a
+			specific set of start and end points between which I can move the text around freely as
+			needed. I then normalized the values to move between 0 and 100.<br /><br />There is also an
+			intersection observer on the SVG's containing element, triggering the text's color change when
+			it's sufficiently in or out of the viewport.<br /><br />Originally inspired by a similar
+			feature on the
+			<a href="https://makeus.care" target="_blank" rel="noopener noreferrer">Make Us Care</a> agency
+			landing page.
+		</p>
+	</ExperimentNotes>
 </main>
 
-<div class="bumper"></div>
+<div class="bumper">This space is intended to exhibit the animation</div>
 <div class="bumper"></div>
 <div class="bumper"></div>
 
@@ -123,11 +140,11 @@
 
 <style>
 	main {
-		font-size: var(--text-xxxl);
 		height: 200vh;
 
 		.container {
 			font-family: var(--font-martian);
+			font-size: var(--text-xxxl);
 			color: var(--color-neutral-200);
 		}
 		.container.observed {
@@ -136,6 +153,7 @@
 		}
 	}
 	.bumper {
+		color: var(--color-neutral-400);
 		height: 40vh;
 		display: flex;
 		justify-content: center;
