@@ -1,10 +1,5 @@
 <script>
 	import { resolve } from '$app/paths';
-	// import Container from '$components/Container.svelte';
-	// import AllButtons from '$components/interesting-buttons/AllButtons.svelte';
-	// import Test from '$components/css-shaders/Test.svelte';
-	// import MaskedRipple from '$components/MaskedRipple.svelte';
-	import ShaderContainer from '$components/real-shaders/ShaderContainer.svelte';
 </script>
 
 <svelte:head>
