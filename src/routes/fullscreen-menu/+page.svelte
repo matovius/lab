@@ -1,6 +1,5 @@
 <script>
-	import { quadOut } from 'svelte/easing';
-	import { blur, fly } from 'svelte/transition';
+	import ExperimentNotes from '$components/experiment-data/ExperimentNotes.svelte';
 
 	let isMenuOpen = $state(false);
 </script>
@@ -8,33 +7,31 @@
 <header>
 	<span class="p">Fullscreen Menu</span>
 	<details class="menu-container fix-z-index" bind:open={isMenuOpen}>
-		{#if isMenuOpen}
+		<!-- {#if isMenuOpen}
 			<div
 				class="backdrop"
 				transition:blur={{ duration: 200, easing: quadOut, amount: 12, opacity: 0 }}
 			></div>
-		{/if}
+		{/if} -->
 		<summary class="trigger">MENU</summary>
 		<menu>
-			{#if isMenuOpen}
-				<ul
-					class="menu-list"
-					transition:fly={{
-						delay: 150,
-						duration: 500,
-						easing: quadOut,
-						x: 0,
-						y: '-0.2em',
-						opacity: 0
-					}}
-				>
-					<li>Hello</li>
-					<li>World</li>
-					<li>This</li>
-					<li>Is A</li>
-					<li>Test</li>
-				</ul>
-			{/if}
+			<ul class="menu-list">
+				<li style="--_stagger: 5">
+					<span>Hello</span>
+				</li>
+				<li style="--_stagger: 4">
+					<span>World</span>
+				</li>
+				<li style="--_stagger: 3">
+					<span>This</span>
+				</li>
+				<li style="--_stagger: 2">
+					<span>Is A</span>
+				</li>
+				<li style="--_stagger: 1">
+					<span>Test</span>
+				</li>
+			</ul>
 		</menu>
 	</details>
 </header>
@@ -43,12 +40,21 @@
 	<hgroup>
 		<h1>Prototype demo of a fullscreen dropdown menu</h1>
 		<p>Tap the button labeled "MENU" to test it out.</p>
-		<p>
+		<!-- <p>
 			This experiment uses the HTML <code>details</code> element to build a functional, albeit not animated,
 			fullscreen dropdown menu.
-		</p>
+		</p> -->
 	</hgroup>
 </main>
+
+<ExperimentNotes>
+	<p>
+		In this experiment, I use the <code>details</code> HTML element to build a fullscreen dropdown
+		menu. This is a simpler technical experiment, but it was interesting nonetheless.<br /><br />I
+		have found doing animations and transitions when the menu opens to be problematic. I currently
+		don't know how to make it work. Maybe at some point.
+	</p>
+</ExperimentNotes>
 
 <style>
 	header {
@@ -78,7 +84,7 @@
 			position: fixed;
 			inset: 0;
 			z-index: -2;
-			/*display: none;*/
+			display: none;
 		}
 
 		summary.trigger {
@@ -104,7 +110,7 @@
 		menu {
 			width: calc(100vw + 0.5rem);
 			height: calc(100vh + 0.5rem);
-			/*background-color: white;*/
+			background-color: white;
 			padding-block-start: 90px;
 			z-index: -1;
 			position: absolute;
@@ -124,8 +130,26 @@
 				display: flex;
 				justify-content: center;
 				align-items: center;
+				/*transform: translateY(-0.2em);
+				opacity: 0;*/
+			}
+
+			span {
+				&:hover {
+					transform: scale(1.3) rotate(-15deg);
+					transition: 150ms;
+				}
 			}
 		}
+		/* These styles don't animate for some reason. Investigate at some point. */
+		/*&[open] {
+			& ul.menu-list > li {
+				transform: translateY(0);
+				opacity: 1;
+				transition-duration: 500ms;
+				transition-delay: calc(100ms * var(--_stagger));
+			}
+		}*/
 	}
 
 	main {
