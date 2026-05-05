@@ -1,6 +1,7 @@
 <script>
 	import { onDestroy, onMount } from 'svelte';
 	import dayjs from 'dayjs';
+	import ExperimentNotes from '$components/experiment-data/ExperimentNotes.svelte';
 
 	/** @type { HTMLInputElement } */
 	let videoPicker;
@@ -10,7 +11,6 @@
 	let ctx;
 	/** @type { File | null } */
 	let videoFile = $state(null);
-	// $inspect(videoFile);
 	/** @type { HTMLVideoElement | null } */
 	let video = $state(null);
 	let videoScale = $state(1);
@@ -19,6 +19,7 @@
 	let isVideoMuted = $state(false);
 	let videoDuration = $state(0);
 	let videoCurrentTime = $state(0);
+	// $inspect(videoFile);
 	// $inspect(videoScale);
 	// $inspect(videoAspectRatio);
 	// $inspect(video);
@@ -37,7 +38,6 @@
 			);
 			// console.log('Video duration: ', videoDuration);
 			// console.log('Video current time: ', videoCurrentTime);
-
 			startCanvas();
 		}
 	}
@@ -70,7 +70,6 @@
 			const top = playerCanvas.height / 2 - (vidH / 2) * videoScale;
 			const left = playerCanvas.width / 2 - (vidW / 2) * videoScale;
 			videoCurrentTime = Math.round(video.currentTime * 1000);
-
 			ctx.drawImage(video, left, top, vidW * videoScale, vidH * videoScale);
 		}
 	}
@@ -80,11 +79,6 @@
 			video = document.createElement('video');
 			video.src = URL.createObjectURL(videoFile);
 			video.oncanplay = readyToPlay;
-
-			// const videoContainer = document.querySelector('div.video-container');
-			// if (videoContainer) {
-			// 	videoContainer.appendChild(video);
-			// }
 		}
 	}
 
@@ -120,7 +114,7 @@
 		const files = videoPicker.files;
 
 		if (files) {
-			// console.log(file[0]);
+			// console.log(files[0]);
 			videoFile = files[0];
 			getVideo();
 		}
@@ -225,12 +219,33 @@
 			</div>
 		</div>
 	</div>
+	<ExperimentNotes>
+		<p>
+			In this experiment, I worked on a weird thought I had of whether one could render video inside
+			of a <code>canvas</code>. Turns out it's entirely possible to do, but still a little finnicky.<br
+			/><br />On initial load, the canvas displays with static width and height of 600x250. When a
+			video file is picked, there's JavaScript that adjusts the height of the canvas to match the
+			aspect ratio of the video. Note that the width doesn't adjust, so vertical videos overflow the
+			page. I could maybe change something in the future to have the width adjust as well, but
+			that's it right now.<br /><br />When the video opens, player controls also show up alongside
+			it. Currently there's a play/pause control, a mute control, and a scrubber made from a range
+			input. I use a library called <code>dayjs</code> to display playback time although it's
+			problematic with hours, so I've kept it to minutes and seconds.<br /><br />Although the
+			play/pause and mute are only controlled via keybinds and not actual buttons. That's a design
+			choice I made to make working with the player much nicer and straightforward. Also, I only
+			realized later that the <code>F</code> keybind is commonly for going fullscreen, so I'll change
+			that soon, because I would like to experiment with fullscreen stuff as well.
+		</p>
+	</ExperimentNotes>
 </main>
 
 <style>
 	main {
-		font-family: var(--font-martian);
+		> .container {
+			font-family: var(--font-martian);
+		}
 	}
+
 	.file-picker {
 		position: relative;
 		height: 10em;
@@ -264,7 +279,6 @@
 	}
 
 	canvas.player-canvas {
-		/*border: 2px solid black;*/
 		border-radius: 1rem;
 		background-color: color-mix(in oklab, black, transparent 90%);
 	}
