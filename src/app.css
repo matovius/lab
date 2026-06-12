@@ -129,6 +129,39 @@
 }
 
 @layer utilities {
+	.h1 {
+		font-size: var(--text-xxxl);
+		line-height: 1;
+	}
+	.h2 {
+		font-size: var(--text-xxl);
+		line-height: 1;
+	}
+	.h3 {
+		font-size: var(--text-xl);
+		line-height: 1.2;
+	}
+	.h4 {
+		font-size: var(--text-lg);
+		line-height: 1.2;
+	}
+	.h5 {
+		font-size: var(--text-md);
+		line-height: 1.4;
+	}
+	.h6 {
+		font-size: var(--text-base);
+		line-height: 1.4;
+	}
+	.p {
+		font-size: var(--text-base);
+		line-height: 1.5;
+	}
+	.small {
+		font-size: var(--text-sm);
+		font-weight: 500;
+		line-height: 1.5;
+	}
 	.fix-z-index {
 		isolation: isolate;
 	}
