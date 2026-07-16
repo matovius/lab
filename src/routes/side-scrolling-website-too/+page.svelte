@@ -42,14 +42,6 @@
 	<h2 class="h1">Here's the footer</h2>
 </footer>
 
-{#snippet Section(name)}
-	<section class={name} style="--_bg: var(--color-{name});">
-		<div class="container">
-			<span>{name}</span>
-		</div>
-	</section>
-{/snippet}
-
 {#snippet SectionTwo()}
 	<section class="two" style="--_bg: var(--color-two);">
 		<div class="container">
@@ -193,12 +185,6 @@
 			> .container {
 				min-width: 100vw;
 				padding-inline: 10vw;
-			}
-		}
-
-		&:not(.one) {
-			> .container {
-				/*background-color: var(--_bg);*/
 			}
 		}
 
