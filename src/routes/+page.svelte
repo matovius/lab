@@ -1,5 +1,39 @@
 <script>
-	import { resolve } from '$app/paths';
+	/**
+	 * @typedef Experiment
+		* @prop { string } label
+		* @prop { string } description
+		* @prop { import('$app/types').ResolvedPathname } url
+	*/
+
+	/** @type { Experiment[] } */
+	const experimentLinks = [
+	  {
+			label: 'Video Canvas',
+			description: 'On rendering videos inside the HTML Canvas.',
+			url: '/video-canvas'
+		},
+    {
+  		label: 'SVG Text Path',
+  		description: 'On drawing text along an SVG path.',
+  		url: '/svg-text-path'
+  	},
+    {
+     	label: 'Fullscreen Menu',
+     	description: 'On displaying a fullscreen dropdown menu.',
+     	url: '/fullscreen-menu'
+    },
+    {
+ 			label: 'Side-scrolling Website One',
+ 			description: 'On scrolling a website sideways (method one).',
+ 			url: '/side-scrolling-website'
+		},
+    {
+  		label: 'Side-scrolling Website Two',
+  		description: 'On scrolling a website sideways (method two).',
+  		url: '/side-scrolling-website-too'
+   	}
+	];
 </script>
 
 <svelte:head>
@@ -21,18 +55,12 @@
 		</hgroup>
 
 		<ul>
-			<li>
-				<a href={resolve('/video-canvas')}>Video Canvas</a>
-				<p>On rendering videos inside the HTML Canvas.</p>
-			</li>
-			<li>
-				<a href={resolve('/svg-text-path')}>SVG Text Path</a>
-				<p>On drawing text along an svg path.</p>
-			</li>
-			<li>
-				<a href={resolve('/fullscreen-menu')}>Fullscreen Menu</a>
-				<p>On displaying a fullscreen dropdown menu.</p>
-			</li>
+  		{#each experimentLinks as link (experimentLinks.indexOf(link))}
+    		<li>
+    		<a href={link.url}>{link.label}</a>
+    		<p>{link.description}</p>
+    		</li>
+  		{/each}
 		</ul>
 	</div>
 </main>
